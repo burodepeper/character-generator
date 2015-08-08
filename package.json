@@ -1,0 +1,8 @@
+{
+  "name": "character-generator",
+  "version": "0.1.1",
+  "author": "David van Gemeren <david@burodepeper.nl>",
+  "main": "generate.js",
+  "repository": "burodepeper/character-generator",
+  "private": true
+}

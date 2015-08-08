@@ -1,45 +1,33 @@
+fs = require 'fs'
+
 module.exports =
   class Character
     init: ->
-      @generateGender()
-      @generateAge()
-      @generateContinent()
+      @keys = ["gender", "age", "continent", "religion", "literate"]
+      for key in @keys
+        @[key] = @calculateValueFor key
 
     show: ->
-      console.log "gender:   ", @gender
-      console.log "age:      ", @age
-      console.log "continent:", @continent
+      for key in @keys
+        console.log key+":", @[key]
+      return
 
     getRandomInt: (min, max) ->
       r = Math.random()
       diff = max - min
       value = min + Math.floor(diff * r)
 
-    generateGender: ->
-      r = @getRandomInt 1, 100
-      @gender = "female"
-      if r > 50
-        @gender = "male"
-      return
+    calculateValueFor: (key) ->
+      filename = "../data/"+key+".json"
+      stats = require filename
+      value = @getValueFrom stats
 
-    generateAge: ->
-      r = @getRandomInt 1, 100
-      if r <= 66
-        @age = "adult"
-      else if r <= 92
-        @age = "child"
-      else
-        @age = "elderly"
-      return
-
-    generateContinent: ->
-      r = @getRandomInt 1, 100
-      if r <= 60
-        @continent = "asia"
-      else if r <= 75
-        @continent = "africa"
-      else if r <= 89
-        @continent = "america"
-      else
-        @continent = "europe"
-      return
+    getValueFrom: (data) ->
+      total = 0
+      for key, value of data
+        total += value
+        data[key] = total
+      r = @getRandomInt(1, total)
+      for key, value of data
+        if r <= value
+          return key

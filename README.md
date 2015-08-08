@@ -1,8 +1,6 @@
 # Character Generator
 
-This is a **work in progress**, of course.
-
-Run `node generate.js` and marvel at not a lot.
+Run `node generate.js` and marvel at pretty much nothing.
 
 ## Description
 
@@ -10,7 +8,7 @@ I like to base short stories (about 300 words) I write for <http://plaspauzepoez
 
 ## Roadmap
 
-- 0.1.0: Get something running via the command line
+- <s>0.1.0: Get something running via the command line</s>
   - 0.1.1: Import stats via .json
 - 0.2.0: Think of a better roadmap
 
